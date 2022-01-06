@@ -191,10 +191,10 @@ val_input_img_paths = input_img_paths[-val_samples:]
 val_target_img_paths = target_img_paths[-val_samples:]
 
 # Instantiate data Sequences for each split
-train_gen = OxfordPets(
+train_gen = DCImages(
     batch_size, img_size, train_input_img_paths, train_target_img_paths
 )
-val_gen = OxfordPets(batch_size, img_size, val_input_img_paths, val_target_img_paths)
+val_gen = DCImages(batch_size, img_size, val_input_img_paths, val_target_img_paths)
 
 
 ######################################## Training model ###################################################################
@@ -206,7 +206,7 @@ val_gen = OxfordPets(batch_size, img_size, val_input_img_paths, val_target_img_p
 model.compile(optimizer="rmsprop", loss="sparse_categorical_crossentropy")
 
 callbacks = [
-    keras.callbacks.ModelCheckpoint("oxford_segmentation.h5", save_best_only=True)
+    keras.callbacks.ModelCheckpoint("DCImages_segmentation.h5", save_best_only=True)
 ]
 
 # Train the model, doing validation at the end of each epoch.
@@ -218,7 +218,7 @@ model.fit(train_gen, epochs=epochs, validation_data=val_gen, callbacks=callbacks
 
 ####################################### Generate predictions for all images in the validation set #####################################################
 
-val_gen = OxfordPets(batch_size, img_size, val_input_img_paths, val_target_img_paths)
+val_gen = DCImages(batch_size, img_size, val_input_img_paths, val_target_img_paths)
 val_preds = model.predict(val_gen)
 
 
