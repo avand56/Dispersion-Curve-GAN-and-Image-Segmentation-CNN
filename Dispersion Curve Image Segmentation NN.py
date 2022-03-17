@@ -1,6 +1,6 @@
 """
 An Image Segmentation Neural Network using U-Net like architecture to classify dispersion image frequency-velocity modes.
-Next steps are to take the segmented images and cluster them, then fit the clustered data using random forest regression.
+Next steps are to take the segmented images and cluster them, then fit the clustered data.
 @Author: Alex Vanderhoeff
 
 """
